@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Items</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+#create_season {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 30%;
+}
+
+#create_season td, #create_season th {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+#create_season tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#create_season tr:hover {
+	background-color: #ddd;
+}
+
+#create_season th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #4CAF50;
+	color: white;
+}
+</style>
+</head>
+
+<body>
+	<h2>Season</h2>
+
+	<form action="#" th:action="@{/season}" th:object="${season}"
+		method="post">
+		<table id="create_season" border="1">
+			<tr>
+				<td th:if="${season}"><input th:value="${season.id}"
+					type="hidden" name="id" th:if="${season}"><input
+					th:value="${season.name}" type="text" name="name"
+					autocomplete="off" placeholder="Enter new season" /></td>
+				<td th:unless="${season}"><input type="hidden" name="id"
+					th:unless="${season}"><input type="text" name="name"
+					autocomplete="off" placeholder="Enter new season" /></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Submit" /></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>

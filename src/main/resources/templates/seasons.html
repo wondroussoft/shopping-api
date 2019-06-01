@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>season list</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+#seasons {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 30%;
+}
+
+#seasons td, #seasons th {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+#seasons tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#seasons tr:hover {
+	background-color: #ddd;
+}
+
+#seasons th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #4CAF50;
+	color: white;
+}
+</style>
+
+</head>
+
+<body>
+	<h2>List of Seasons</h2>
+	<a href="/season"> Add Season</a>
+     <table id="seasons">
+	<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Details</th>
+			<th>Delete</th>
+			<th>Add Wears</th>
+			<th>Edit</th>
+			<th>Wears</th>
+		</tr>
+		<tr th:each="season : ${seasons}">
+			<td th:text="${season.id}">Id</td>
+			<td th:text="${season.name}">Name</td>
+			<td><a th:href="@{'/seasons/' + ${season.id}}">Details</a></td>
+			<td><a th:href="@{'/season/' + ${season.id}}">Delete</a></td>
+			<td><a th:href="@{'/seasons/' + ${season.id} + '/wears'}">Wears</a></td>
+			<td><a th:href="@{'/season/' + ${season.id} + '/edit'}">Edit</a></td>
+			<td><table id="wears">
+					<tr>
+						<th>Id</th>
+						<th>Name</th>
+					</tr>
+					<tr th:each="wear : ${season.wears}">
+						<td th:text="${wear.id}">Id</td>
+						<td th:text="${wear.name}">Name</td>
+					</tr>
+				</table></td>
+		</tr>
+	</table>
+
+</body>
+</html>

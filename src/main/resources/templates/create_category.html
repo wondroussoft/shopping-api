@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Items</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+#create_category {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 30%;
+}
+
+#create_category td, #create_category th {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+#create_category tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#create_category tr:hover {
+	background-color: #ddd;
+}
+
+#create_category th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #4CAF50;
+	color: white;
+}
+</style>
+</head>
+<body>
+	<h2>Category</h2>
+
+	<form action="#" th:action="@{'/wears/' + ${wearId} + '/category'}"
+		th:object="${category}" method="post">
+		<table id="create_category" border="1">
+			<tr>
+	<td th:if="${category}"><input th:value="${category.id}"type="hidden" name="id" 
+	th:if="${category}"><input th:value="${category.name}"type="text" name="name" 
+	autocomplete="off" placeholder="Enter new category"/></td>
+	<td th:unless="${category}"><input type="hidden" name="id" 
+		th:unless="${category}"><input type="text" name="name"autocomplete="off" placeholder="Enter new category" /></td>
+			<tr>
+				<td><input type="submit" value="Submit" /></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>
